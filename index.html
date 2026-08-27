@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Creator Besties</title>
+    <meta name="description" content="A curated circle of creators — 18+." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Momo+Trust+Display&family=Nunito:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css?v=7" />
+  </head>
+  <body>
+    <div id="bookmark-callout" class="bookmark-callout">
+      <span>Click the <span class="bookmark-star" aria-hidden="true">⭐</span>↑ to add to bookmarks</span>
+    </div>
+
+    <div class="panel">
+      <header class="site-header">
+        <div class="header-badges">
+          <div class="badge-popular" id="popularLabel">Popular</div>
+          <div class="badge-trusted">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <circle cx="8" cy="8" r="8" fill="#00A6FF" />
+              <path
+                d="M4.5 8.2l2.2 2.2 4.8-4.8"
+                stroke="#fff"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <span id="trustedLabel">Trusted Creators</span>
+          </div>
+        </div>
+        <div class="header-title" id="brandHeadline">Get to know my</div>
+        <div class="header-subtitle" id="brandSubtitle">OF Besties 🤭💗</div>
+      </header>
+
+      <div class="bestie-of-day" id="featured"></div>
+
+      <div class="grid-wrap">
+        <div class="grid" id="friendsGrid"></div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div id="copyright">© Copyright 2026. All rights reserved.</div>
+      <div class="links">
+        <a href="privacy.html">Privacy Policy</a>
+        ·
+        <a href="terms.html">Terms and Conditions</a>
+      </div>
+    </footer>
+
+    <div class="age-overlay" id="ageOverlay">
+      <div class="age-popup">
+        <svg class="age-icon" viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="#db18e7" />
+          <path d="M10 16.5l4 4 8-9" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <h2>Are you 18 or older?</h2>
+        <p>This site links to adult creator profiles (18+). You must be 18 or older to continue.</p>
+        <div class="gate-form">
+          <button class="age-btn age-yes" id="ageYes" type="button">Yes, I’m 18+</button>
+          <button class="age-btn age-no" id="ageNo" type="button">No, take me back</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/models.js?v=9"></script>
+    <script src="js/app.js?v=8"></script>
+  </body>
+</html>
