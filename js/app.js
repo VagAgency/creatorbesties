@@ -103,21 +103,6 @@ function renderGrid() {
   });
 }
 
-function initAgeGate() {
-  if (sessionStorage.getItem("age-ok") === "1") {
-    $("#ageOverlay").classList.add("hidden");
-    return;
-  }
-  $("#ageYes").addEventListener("click", () => {
-    sessionStorage.setItem("age-ok", "1");
-    $("#ageOverlay").classList.add("hidden");
-  });
-  $("#ageNo").addEventListener("click", () => {
-    if (history.length > 1) history.back();
-    else window.location.href = "https://www.google.com";
-  });
-}
-
 function init() {
   $("#brandHeadline").textContent = SITE.headline;
   $("#brandSubtitle").innerHTML =
@@ -129,7 +114,6 @@ function init() {
 
   renderFeatured();
   renderGrid();
-  initAgeGate();
 }
 
 document.addEventListener("DOMContentLoaded", init);
