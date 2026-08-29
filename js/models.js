@@ -26,7 +26,7 @@ window.MODELS = [
     name: "Juliette",
     photo: "photos/juliette.png",
     bio: "I'm a 48yo medical secretary, mother of 2 🍼 I've been craving for men's touch for the past 2 years since my divorce 😫",
-    url: "",
+    url: "https://onlyfans.com/juliettecharming/c49",
     isNew: true,
   },
 ];
