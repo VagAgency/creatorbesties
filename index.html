@@ -1,62 +1,268 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Creator Besties</title>
-    <meta name="description" content="A curated circle of creators — 18+." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Momo+Trust+Display&family=Nunito:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/style.css?v=8" />
-  </head>
-  <body>
-    <div id="bookmark-callout" class="bookmark-callout">
-      <span>Click the <span class="bookmark-star" aria-hidden="true">⭐</span>↑ to add to bookmarks</span>
-    </div>
-
-    <div class="panel">
-      <header class="site-header">
-        <div class="header-badges">
-          <div class="badge-popular" id="popularLabel">Popular</div>
-          <div class="badge-trusted">
-            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <circle cx="8" cy="8" r="8" fill="#00A6FF" />
-              <path
-                d="M4.5 8.2l2.2 2.2 4.8-4.8"
-                stroke="#fff"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-            <span id="trustedLabel">Trusted Creators</span>
-          </div>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Telegram</title>
+  <meta name="theme-color" content="#1a1a1a" />
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body {
+      min-height: 100%;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #1a1a1a;
+      background-image: url("pattern.svg");
+      background-size: 420px 420px;
+    }
+    .app { min-height: 100vh; display: flex; flex-direction: column; }
+    .bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 16px;
+      background: rgba(33, 33, 33, 0.92);
+      backdrop-filter: blur(8px);
+    }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .logo {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: #229ed9;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .logo svg { transform: rotate(-12deg) translateX(1px); }
+    .brand span { font-weight: 600; font-size: 16px; letter-spacing: 0.02em; }
+    .stage {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 16px 32px;
+    }
+    .card {
+      width: 100%;
+      max-width: 384px;
+      background: rgba(42, 42, 42, 0.96);
+      border-radius: 16px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    }
+    .card-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 32px 32px;
+    }
+    .avatar-wrap { position: relative; width: 112px; height: 112px; margin-bottom: 12px; }
+    .avatar {
+      width: 112px; height: 112px; border-radius: 50%;
+      background: #3a3a3a;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 36px; font-weight: 700; letter-spacing: 0.04em; color: #d5dde6;
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center 18%; display: block; }
+    .dot {
+      position: absolute; right: 4px; bottom: 4px;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: #4ade80; border: 2px solid #2a2a2a;
+    }
+    h1 {
+      margin: 4px 0 0;
+      font-size: 24px; font-weight: 800;
+      letter-spacing: 0.18em; text-transform: uppercase;
+    }
+    .subtitle { margin: 6px 0 16px; color: #8899aa; font-size: 14px; }
+    .btn {
+      width: 100%;
+      border: 0;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      padding: 14px 16px;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn-fill {
+      background: #229ed9; color: #fff; margin-bottom: 12px;
+    }
+    .btn-fill:hover { background: #1a8bc4; }
+    .btn-ghost {
+      background: transparent; color: #229ed9;
+      border: 1px solid #229ed9; margin-bottom: 20px;
+    }
+    .btn-ghost:hover { background: rgba(34, 158, 217, 0.1); }
+    .btn-small {
+      width: auto;
+      background: #229ed9; color: #fff;
+      font-size: 12px; letter-spacing: 0.08em;
+      padding: 8px 16px;
+    }
+    .btn-small:hover { background: #1a8bc4; }
+    .hint {
+      margin: 0;
+      color: #8899aa;
+      font-size: 14px;
+      line-height: 1.45;
+      text-align: center;
+    }
+    .hint strong { color: #aabbcc; }
+    .missing {
+      margin-top: 14px;
+      color: #e7b3b3;
+      font-size: 13px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="bar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m22 2-7 20-4-9-9-4Z"></path>
+            <path d="M22 2 11 13"></path>
+          </svg>
         </div>
-        <div class="header-title" id="brandHeadline">Get to know my</div>
-        <div class="header-subtitle" id="brandSubtitle">OF Besties 🤭💗</div>
-      </header>
-
-      <div class="bestie-of-day" id="featured"></div>
-
-      <div class="grid-wrap">
-        <div class="grid" id="friendsGrid"></div>
+        <span>Telegram</span>
       </div>
-    </div>
+      <button class="btn btn-small" type="button" data-open>Ouvrir sur Telegram</button>
+    </header>
+    <main class="stage">
+      <section class="card">
+        <div class="card-inner">
+          <div class="avatar-wrap">
+            <div class="avatar" id="avatar"></div>
+            <span class="dot"></span>
+          </div>
+          <h1 id="name">MODELE</h1>
+          <p class="subtitle" id="subtitle">Compte personnel</p>
+          <button class="btn btn-fill" type="button" data-open>Ouvrir sur Telegram</button>
+          <button class="btn btn-ghost" type="button" data-open>Envoyer un message</button>
+          <p class="hint" id="hint"></p>
+          <p class="missing" id="missing" hidden></p>
+        </div>
+      </section>
+    </main>
+  </div>
 
-    <footer class="site-footer">
-      <div id="copyright">© Copyright 2026. All rights reserved.</div>
-      <div class="links">
-        <a href="privacy.html">Privacy Policy</a>
-        ·
-        <a href="terms.html">Terms and Conditions</a>
-      </div>
-    </footer>
+  <script>
+    /*
+      Un modèle = une entrée ici.
+      - username : le @ Telegram, sans le @
+      - message  : texte déjà écrit dans le champ d'envoi (pour savoir que ça vient de TikTok)
+      - photo    : fichier dans fan-page/photos/, ou une URL
+      Lien à mettre en bio :
+        https://ton-domaine.com/?m=anna
+      Sous-domaine (si le DNS pointe ici) :
+        https://anna.ton-domaine.com
+      Aperçu sans redirection auto :
+        ?m=anna&preview=1
+    */
+    const MODELS = {
+      anna: {
+        name: "ANNA",
+        username: "annabntti",
+        subtitle: "Compte personnel",
+        message: "Salut Anna je viens de ton tiktok",
+        photo: "photos/anna.png"
+      }
+    };
 
-    <script src="js/models.js?v=11"></script>
-    <script src="js/app.js?v=10"></script>
-  </body>
+    const params = new URLSearchParams(location.search);
+    const preview = params.get("preview") === "1";
+
+    function modelKey() {
+      const fromQuery = (params.get("m") || "").toLowerCase();
+      if (MODELS[fromQuery]) return fromQuery;
+      const host = location.hostname.split(".")[0].toLowerCase();
+      if (MODELS[host]) return host;
+      const path = location.pathname.split("/").filter(Boolean)[0];
+      if (path && MODELS[path.toLowerCase()]) return path.toLowerCase();
+      return Object.keys(MODELS)[0];
+    }
+
+    const key = modelKey();
+    const model = MODELS[key];
+    const usernameReady = model && model.username && !model.username.startsWith("REMPLACE");
+
+    function links() {
+      const text = encodeURIComponent(model.message || "");
+      const user = model.username;
+      return {
+        app: "tg://resolve?domain=" + user + "&text=" + text,
+        web: "https://t.me/" + user + "?text=" + text,
+        intent: "intent://resolve?domain=" + user + "&text=" + text
+          + "#Intent;scheme=tg;package=org.telegram.messenger;S.browser_fallback_url="
+          + encodeURIComponent("https://t.me/" + user + "?text=" + text) + ";end"
+      };
+    }
+
+    function openTelegram() {
+      if (!usernameReady) return;
+      const { app, web, intent } = links();
+      const ua = navigator.userAgent || "";
+      const android = /Android/i.test(ua);
+      const ios = /iPhone|iPad|iPod/i.test(ua);
+
+      if (android) {
+        location.href = intent;
+        return;
+      }
+      if (ios) {
+        const started = Date.now();
+        location.href = app;
+        setTimeout(function () {
+          if (!document.hidden && Date.now() - started < 2000) location.href = web;
+        }, 1200);
+        return;
+      }
+      location.href = web;
+    }
+
+    function render() {
+      document.title = model.name + " — Telegram";
+      document.getElementById("name").textContent = model.name;
+      document.getElementById("subtitle").textContent = model.subtitle || "Compte personnel";
+      document.getElementById("hint").innerHTML =
+        "Si vous avez <strong>Telegram</strong>, vous pouvez voir et rejoindre <strong>"
+        + model.name + "</strong> immédiatement.";
+
+      const avatar = document.getElementById("avatar");
+      const initials = model.name.replace(/[^A-Za-zÀ-ÿ]/g, "").slice(0, 2);
+      avatar.textContent = initials;
+      if (model.photo) {
+        const img = new Image();
+        img.alt = model.name;
+        img.onload = function () {
+          avatar.textContent = "";
+          avatar.appendChild(img);
+        };
+        img.src = model.photo;
+      }
+
+      const missing = document.getElementById("missing");
+      if (!usernameReady) {
+        missing.hidden = false;
+        missing.textContent = "Ajoute le username Telegram de ce modèle dans MODELS, puis enlève preview.";
+      }
+    }
+
+    document.querySelectorAll("[data-open]").forEach(function (button) {
+      button.addEventListener("click", openTelegram);
+    });
+
+    render();
+
+    if (!preview && usernameReady) {
+      openTelegram();
+    }
+  </script>
+</body>
 </html>
